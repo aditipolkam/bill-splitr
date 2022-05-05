@@ -11,5 +11,5 @@
   }
 </script>
 
-<input type="text" bind:value={person} id="person-name" />
+<input type="text" placeholder="Name" bind:value={person} id="person-name" />
 <button id="add" on:click={addPerson}>Add Person</button>

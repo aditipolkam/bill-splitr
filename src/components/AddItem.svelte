@@ -1,13 +1,44 @@
 <script>
+  export let selected_people;
   let itemname = "";
-  let itemamount = 0;
-  let itemquantity = 0;
-  let itemgst = 5.0;
-  function addItem() {}
+  let itemamount = "";
+  let itemquantity = "";
+  let itemgst = "";
+  function addItem() {
+    console.log(selected_people);
+  }
 </script>
 
-<input type="text" name="item" id="item" bind:value={itemname} />
-<input type="text" name="amount" id="amount" bind:value={itemamount} />
-<input type="text" name="quantity" id="quantity" bind:value={itemquantity} />
-<input type="text" name="gst" id="gst" bind:value={itemgst} />
-<button id="addItem" on:click={addItem}>Add Item</button>
+<input
+  type="text"
+  placeholder="Item Name"
+  name="item"
+  id="item"
+  bind:value={itemname}
+  required
+/>
+<input
+  type="text"
+  placeholder="Amount for 1 unit"
+  name="amount"
+  id="amount"
+  bind:value={itemamount}
+  required
+/>
+<input
+  type="text"
+  placeholder="Quantity"
+  name="quantity"
+  id="quantity"
+  bind:value={itemquantity}
+  required
+/>
+<input
+  type="text"
+  placeholder="GST (default 5%)"
+  name="gst"
+  id="gst"
+  bind:value={itemgst}
+/>
+<button id="addItem">Add Item</button>
+<br />

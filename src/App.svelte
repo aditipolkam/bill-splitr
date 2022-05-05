@@ -1,16 +1,34 @@
 <script>
   import AddItem from "./components/AddItem.svelte";
   import AddPeople from "./components/AddPeople.svelte";
-  export let name;
+  let people = [];
+  let selected_people = [];
   function addName(event) {
-    console.log(event.detail.personname);
+    //console.log(event.detail.personname);
+    people = [...people, event.detail.personname];
+    console.log(people);
   }
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <AddPeople on:message={addName} />
-  <AddItem />
+  <h1>Bill Spiltr</h1>
+  <AddPeople on:message={addName} /><br />
+  {#each people as person}
+    <input
+      type="checkbox"
+      bind:group={selected_people}
+      name="selected_people"
+      value={person}
+    />
+    {person}
+  {/each}<br />
+  <AddItem /><br />
+  {#if selected_people.length > 0}
+    <p>You selected:</p>
+    {#each selected_people as person}
+      {person}
+    {/each}
+  {/if}<br />
 </main>
 
 <style>
