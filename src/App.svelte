@@ -3,10 +3,10 @@
   import AddPeople from "./components/AddPeople.svelte";
   let people = [];
   let selected_people = [];
+  $: speople = selected_people.join(" ");
   function addName(event) {
-    //console.log(event.detail.personname);
     people = [...people, event.detail.personname];
-    console.log(people);
+    //console.log(people);
   }
 </script>
 
@@ -22,7 +22,7 @@
     />
     {person}
   {/each}<br />
-  <AddItem /><br />
+  <AddItem {selected_people} /><br />
   {#if selected_people.length > 0}
     <p>You selected:</p>
     {#each selected_people as person}

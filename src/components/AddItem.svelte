@@ -18,7 +18,7 @@
   required
 />
 <input
-  type="text"
+  type="number"
   placeholder="Amount for 1 unit"
   name="amount"
   id="amount"
@@ -26,7 +26,7 @@
   required
 />
 <input
-  type="text"
+  type="number"
   placeholder="Quantity"
   name="quantity"
   id="quantity"
@@ -34,11 +34,11 @@
   required
 />
 <input
-  type="text"
+  type="number"
   placeholder="GST (default 5%)"
   name="gst"
   id="gst"
   bind:value={itemgst}
 />
-<button id="addItem">Add Item</button>
+<button id="addItem" on:click={addItem}>Add Item</button>
 <br />
