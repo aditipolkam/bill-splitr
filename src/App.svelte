@@ -29,7 +29,7 @@
 </script>
 
 <main>
-  <h1>Bill Spiltr</h1>
+  <h1>Bill Splitr</h1>
   <AddPeople on:message={addName} /><br />
   {#each people as person}
     <input
