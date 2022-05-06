@@ -1,11 +1,37 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   export let selected_people;
   let itemname = "";
   let itemamount = "";
   let itemquantity = "";
   let itemgst = "";
+  const dispatch = createEventDispatcher();
+
   function addItem() {
-    console.log(selected_people);
+    if (itemgst === "") {
+      itemgst = 5;
+    }
+    //console.log(selected_people);
+    const totalp = selected_people.length;
+    const gst_amount = (itemamount * itemgst) / 100;
+    const share = ((itemamount + gst_amount) * itemquantity) / totalp;
+
+    let item_split = [];
+    for (let i = 0; i < selected_people.length; i++) {
+      item_split.push({
+        person: selected_people[i],
+        name: itemname,
+        split_amount: share,
+        quantity: itemquantity,
+      });
+    }
+
+    dispatch("addItem", item_split);
+
+    itemname = "";
+    itemamount = "";
+    itemquantity = "";
+    itemgst = "";
   }
 </script>
 

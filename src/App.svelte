@@ -3,10 +3,28 @@
   import AddPeople from "./components/AddPeople.svelte";
   let people = [];
   let selected_people = [];
-  $: speople = selected_people.join(" ");
+  let calculated_bill = {};
   function addName(event) {
     people = [...people, event.detail.personname];
+    calculated_bill[event.detail.personname] = {
+      items: [],
+      total: 0,
+    };
     //console.log(people);
+  }
+
+  function addItem(event) {
+    //console.log(event.detail);
+    let item = event.detail;
+    for (let i = 0; i < item.length; i++) {
+      calculated_bill[item[i]["person"]]["items"].push({
+        name: item[i]["name"],
+        split_amount: item[i]["split_amount"],
+        quantity: item[i]["quantity"],
+      });
+      calculated_bill[item[i]["person"]]["total"] += item[i]["split_amount"];
+    }
+    selected_people = [];
   }
 </script>
 
@@ -22,13 +40,14 @@
     />
     {person}
   {/each}<br />
-  <AddItem {selected_people} /><br />
   {#if selected_people.length > 0}
     <p>You selected:</p>
     {#each selected_people as person}
       {person}
     {/each}
   {/if}<br />
+  <AddItem {selected_people} on:addItem={addItem} /><br />
+  <p>{JSON.stringify(calculated_bill)}</p>
 </main>
 
 <style>
