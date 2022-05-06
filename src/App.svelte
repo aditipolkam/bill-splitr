@@ -1,6 +1,8 @@
 <script>
   import AddItem from "./components/AddItem.svelte";
   import AddPeople from "./components/AddPeople.svelte";
+  import DisplaySplit from "./components/DisplaySplit.svelte";
+
   let people = [];
   let selected_people = [];
   let calculated_bill = {};
@@ -42,12 +44,10 @@
   {/each}<br />
   {#if selected_people.length > 0}
     <p>You selected:</p>
-    {#each selected_people as person}
-      {person}
-    {/each}
+    {selected_people.join(" ")}
   {/if}<br />
   <AddItem {selected_people} on:addItem={addItem} /><br />
-  <p>{JSON.stringify(calculated_bill)}</p>
+  <DisplaySplit {calculated_bill} />
 </main>
 
 <style>
