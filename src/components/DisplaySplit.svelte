@@ -4,8 +4,8 @@
 
 {#each Object.entries(calculated_bill) as [person, data]}
   <div>
-    <p>{person}</p>
-    <table>
+    <h4>Bill split for {person}</h4>
+    <table align="center" border="1px" border-color="#ff3e00">
       <tr>
         <th>Item</th>
         <th>Quantity</th>
@@ -26,3 +26,11 @@
     </table>
   </div>
 {/each}
+
+<style>
+  table {
+    align-content: center;
+    border-color: #ff3e00;
+    border: 1px;
+  }
+</style>
