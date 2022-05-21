@@ -15,6 +15,10 @@
     //console.log(people);
   }
 
+  function displayError(event) {
+    alert(event.detail);
+  }
+
   function addItem(event) {
     //console.log(event.detail);
     let item = event.detail;
@@ -46,7 +50,8 @@
     <p>You selected:</p>
     {selected_people.join(" ")}
   {/if}<br />
-  <AddItem {selected_people} on:addItem={addItem} /><br />
+  <AddItem {selected_people} on:addItem={addItem} on:error={displayError} /><br
+  />
   <DisplaySplit {calculated_bill} />
 </main>
 

@@ -13,16 +13,34 @@
     }
     //console.log(selected_people);
     const totalp = selected_people.length;
+    if (totalp == 0)
+      return dispatch("error", "Please select atleast one person");
+
+    if (itemname === "") return dispatch("error", "Please enter item name");
+
+    if (itemamount === "" || itemamount == 0)
+      return dispatch("error", "Please enter item amount");
+
+    if (itemquantity === "" || itemquantity == 0)
+      return dispatch("error", "Please enter item quantity");
+
     const gst_amount = (itemamount * itemgst) / 100;
     const share = ((itemamount + gst_amount) * itemquantity) / totalp;
 
     let item_split = [];
     for (let i = 0; i < selected_people.length; i++) {
+      let q = 0;
+      if (totalp == 1) {
+        q = itemquantity;
+      } else {
+        q = itemquantity + "/" + totalp;
+      }
+
       item_split.push({
         person: selected_people[i],
         name: itemname,
         split_amount: parseInt(share) + 1,
-        quantity: itemquantity + "/" + totalp,
+        quantity: q,
       });
     }
 
