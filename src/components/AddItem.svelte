@@ -21,8 +21,8 @@
       item_split.push({
         person: selected_people[i],
         name: itemname,
-        split_amount: share,
-        quantity: itemquantity,
+        split_amount: parseInt(share) + 1,
+        quantity: itemquantity + "/" + totalp,
       });
     }
 
