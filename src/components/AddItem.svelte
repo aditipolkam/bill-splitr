@@ -29,12 +29,14 @@
 
     let item_split = [];
     for (let i = 0; i < selected_people.length; i++) {
-      let q = 0;
-      if (totalp == 1) {
-        q = itemquantity;
-      } else {
-        q = itemquantity + "/" + totalp;
-      }
+      let q = parseInt(itemquantity / totalp);
+      // if (totalp == 1) {
+      //   q = itemquantity;
+      // } else if (itemquantity / totalp == 1) {
+      //   q = 1;
+      // } else {
+      //   q = itemquantity + "/" + totalp;
+      // }
 
       item_split.push({
         person: selected_people[i],
